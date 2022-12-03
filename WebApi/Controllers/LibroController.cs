@@ -2,29 +2,31 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi.Models;
 
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AutorController : ControllerBase
+    public class LibroController : ControllerBase
     {
         private readonly AplicationDbContext _context;
-        public AutorController(AplicationDbContext context)
+        public LibroController(AplicationDbContext context)
         {
             _context = context;
         }
 
         /// <summary>
-        /// Consulta todos los autores
+        /// Consulta todos los libros
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> ObtenerAutores()
+        public async Task<IActionResult> ObtenerLibros()
         {
             try
             {
-                var autores = await _context.Autor.ToListAsync();
-                return Ok(autores);
+                var libros = await _context.Libro.ToListAsync();
+                return Ok(libros);
             }
             catch (Exception ex)
             {
@@ -34,18 +36,18 @@ namespace WebApi.Controllers
         }
 
         /// <summary>
-        /// Registra un autor
+        /// Registrar un libro
         /// </summary>
-        /// <param name="autor"></param>
+        /// <param name="libro"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> RegistrarAutor([FromBody] Autor autor)
+        public async Task<IActionResult> RegistrarLibro([FromBody] Libro libro)
         {
             try
             {
-                _context.Add(autor);
+                _context.Add(libro);
                 await _context.SaveChangesAsync();
-                return Ok(autor);
+                return Ok(libro);
             }
             catch (Exception ex)
             {
