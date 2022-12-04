@@ -1,0 +1,110 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="titulo">LIBROS</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo">{{ accion | uppercase }}</h5>
+                    <form [formGroup]="form" (ngSubmit)="guardarLibro()">
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-book"
+                                [class.green-icon]="this.form.get('titulo')?.valid"
+                                [class.red-icon]="this.form.get('titulo')?.invalid && this.form.get('titulo')?.touched"></i>
+                            </span>
+                            <input formControlName="titulo" type="text" class="form-control" placeholder="Titulo">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-calendar-days"
+                                    [class.green-icon]="this.form.get('anio')?.valid"
+                                    [class.red-icon]="this.form.get('anio')?.invalid && this.form.get('anio')?.touched"></i>
+                            </span>
+                            <input formControlName="anio" maxlength="16" type="text" class="form-control" placeholder="Año">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-file-signature"
+                                    [class.green-icon]="this.form.get('genero')?.valid"
+                                    [class.red-icon]="this.form.get('genero')?.invalid && this.form.get('genero')?.touched"></i>
+                            </span>
+                            <input formControlName="genero" maxlength="16" type="text" class="form-control" placeholder="Genero">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-sharp fa-solid fa-file"
+                                            [class.green-icon]="this.form.get('numeroPaginas')?.valid"
+                                            [class.red-icon]="this.form.get('numeroPaginas')?.invalid && this.form.get('numeroPaginas')?.touched"></i>
+                                    </span>
+                                    <input formControlName="numeroPaginas" maxlength="5" type="text" class="form-control" placeholder="Numero paginas">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="input-group input-group-lg mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-sharp fa-solid fa-user"
+                                            [class.green-icon]="this.form.get('autorId')?.valid"
+                                            [class.red-icon]="this.form.get('autorId')?.invalid && this.form.get('autorId')?.touched"></i>
+                                    </span>
+                                    <input formControlName="autorId" maxlength="5" type="text" class="form-control" placeholder="Autor">
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="d-grid gap-2">
+                            <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                                <i class="fa-solid fa-floppy-disk"></i>&nbsp; Guardar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo"></h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>TITULO</td>
+                                <td>AÑO</td>
+                                <td>GENERO</td>
+                                <td>NUMERO PAGINAS</td>
+                                <td>AUTOR ID</td>
+                                <td></td>
+                                <td></td>
+                            </tr>                            
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let libro of listLibros">
+                                <td>{{ libro.titulo }}</td>
+                                <td>{{ libro.anio }}</td>
+                                <td>{{ libro.genero }}</td>
+                                <td>{{ libro.numeroPaginas }}</td>
+                                <td>{{ libro.autorId }}</td>                                
+                                <td>
+                                    <!-- <i (click)="editarLibro(libro)" class="far fa-edit text-info"></i> -->
+                                </td>
+                                <td>
+                                    <!-- <i (click)="eliminarLibro(libro.id)" class="far fa-trash-alt text-danger"></i> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
