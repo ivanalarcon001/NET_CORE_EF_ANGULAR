@@ -45,17 +45,17 @@ export class AutorComponent implements OnInit {
       CiudadProcedencia: this.form.get('ciudadProcedencia')?.value,
       CorreoElectronico: this.form.get('correoElectronico')?.value,
     }
+    
 
     // if(this.id == undefined) {
-        this.autorService.guardarAutor(autor).subscribe(data => {
-          debugger
-          this.toastr.success('El autor fue registrado con exito!', 'Autor Registrado');
-          this.obtenerAutores();
-          this.form.reset();
-        }, error => {
-          this.toastr.error('Opss.. ocurrio un error','Error')
-          console.log(error);
-        })
+      this.autorService.guardarAutor(autor).subscribe(data => {
+        this.toastr.success('El autor fue registrado con exito!', 'Autor Registrado');
+        this.obtenerAutores();
+        this.form.reset();
+      }, error => {
+        this.toastr.error('Opss.. ocurrio un error','Error')
+        console.log(error);
+      })
     // }else {
       //   autor.id = this.id;
       //   this.autorService.actualizarAutor(this.id,autor).subscribe(data => {
