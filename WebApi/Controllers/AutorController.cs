@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Data.Repository;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -8,10 +9,11 @@ namespace WebApi.Controllers
     [ApiController]
     public class AutorController : ControllerBase
     {
-        private readonly AplicationDbContext _context;
+        private AutorRepository autorRepository;
+
         public AutorController(AplicationDbContext context)
         {
-            _context = context;
+            autorRepository = new AutorRepository(context);
         }
 
         /// <summary>
@@ -19,11 +21,11 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> ObtenerAutores()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var autores = await _context.Autor.ToListAsync();
+                var autores = await autorRepository.ObtenerAutores();
                 return Ok(autores);
             }
             catch (Exception ex)
@@ -39,13 +41,12 @@ namespace WebApi.Controllers
         /// <param name="autor"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> RegistrarAutor([FromBody] Autor autor)
+        public async Task<IActionResult> Post([FromBody] Autor autor)
         {
             try
             {
-                _context.Add(autor);
-                await _context.SaveChangesAsync();
-                return Ok(autor);
+                var escritor = autorRepository.RegistrarAutor(autor);
+                return Ok(escritor);
             }
             catch (Exception ex)
             {

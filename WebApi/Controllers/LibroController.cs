@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Data.Repository;
 using WebApi.Models;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebApi.Controllers
 {
@@ -10,10 +9,11 @@ namespace WebApi.Controllers
     [ApiController]
     public class LibroController : ControllerBase
     {
-        private readonly AplicationDbContext _context;
+        private LibroRepository libroRepository;
+
         public LibroController(AplicationDbContext context)
         {
-            _context = context;
+            libroRepository = new LibroRepository(context);
         }
 
         /// <summary>
@@ -21,11 +21,11 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> ObtenerLibros()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var libros = await _context.Libro.ToListAsync();
+                var libros = await libroRepository.ObtenerLibros();
                 return Ok(libros);
             }
             catch (Exception ex)
@@ -41,17 +41,15 @@ namespace WebApi.Controllers
         /// <param name="libro"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> RegistrarLibro([FromBody] Libro libro)
+        public async Task<IActionResult> Post([FromBody] Libro libro)
         {
             try
             {
-                _context.Add(libro);
-                await _context.SaveChangesAsync();
-                return Ok(libro);
+                var escritor = libroRepository.RegistrarLibro(libro);
+                return Ok(escritor);
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }
