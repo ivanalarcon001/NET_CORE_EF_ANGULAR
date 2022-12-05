@@ -3,7 +3,7 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="titulo">AUTORES</h3>
+                    <h3 class="titulo">MODULO AUTORES</h3>
                 </div>
             </div>
         </div>
@@ -21,7 +21,15 @@
                                 [class.green-icon]="this.form.get('nombreCompleto')?.valid"
                                 [class.red-icon]="this.form.get('nombreCompleto')?.invalid && this.form.get('nombreCompleto')?.touched"></i>
                             </span>
-                            <input formControlName="nombreCompleto" type="text" class="form-control" placeholder="Nombre Completo">
+                            <input formControlName="nombreCompleto" type="text" class="form-control" placeholder="*Nombre Completo">
+                        </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fas fa-calendar-alt"
+                                    [class.green-icon]="this.form.get('fechaNacimiento')?.valid"
+                                    [class.red-icon]="this.form.get('fechaNacimiento')?.invalid && this.form.get('fechaNacimiento')?.touched"></i>
+                            </span>
+                            <input formControlName="fechaNacimiento" type="text" class="form-control" placeholder="*dd/mm/yyyy">
                         </div>
                         <div class="input-group input-group-lg mb-3">
                             <span class="input-group-text">
@@ -29,7 +37,7 @@
                                     [class.green-icon]="this.form.get('ciudadProcedencia')?.valid"
                                     [class.red-icon]="this.form.get('ciudadProcedencia')?.invalid && this.form.get('ciudadProcedencia')?.touched"></i>
                             </span>
-                            <input formControlName="ciudadProcedencia" maxlength="16" type="text" class="form-control" placeholder="Ciudad procedencia">
+                            <input formControlName="ciudadProcedencia" type="text" class="form-control" placeholder="*Ciudad procedencia">
                         </div>
                         <div class="input-group input-group-lg mb-3">
                             <span class="input-group-text">
@@ -37,19 +45,7 @@
                                     [class.green-icon]="this.form.get('correoElectronico')?.valid"
                                     [class.red-icon]="this.form.get('correoElectronico')?.invalid && this.form.get('correoElectronico')?.touched"></i>
                             </span>
-                            <input formControlName="correoElectronico" maxlength="16" type="text" class="form-control" placeholder="Correo electronico">
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="input-group input-group-lg mb-3">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-calendar-alt"
-                                            [class.green-icon]="this.form.get('fechaNacimiento')?.valid"
-                                            [class.red-icon]="this.form.get('fechaNacimiento')?.invalid && this.form.get('fechaNacimiento')?.touched"></i>
-                                    </span>
-                                    <input formControlName="fechaNacimiento" maxlength="5" type="text" class="form-control" placeholder="MM/YY">
-                                </div>
-                            </div>
+                            <input formControlName="correoElectronico" type="text" class="form-control" placeholder="*Correo electronico">
                         </div>
                         <div class="d-grid gap-2">
                             <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">

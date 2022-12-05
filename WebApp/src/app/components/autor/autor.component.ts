@@ -18,10 +18,10 @@ export class AutorComponent implements OnInit {
     private toastr: ToastrService,
     private autorService: AutorService) {
     this.form = this.fb.group({
-      nombreCompleto: ['', Validators.required],
-      fechaNacimiento: ['', [Validators.required, Validators.maxLength(5), Validators.minLength(5)]],
-      ciudadProcedencia: ['', Validators.required],
-      correoElectronico: ['', Validators.required],
+      nombreCompleto: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      ciudadProcedencia: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      correoElectronico: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10)]],
+      fechaNacimiento: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
     })
    }
 
@@ -31,7 +31,6 @@ export class AutorComponent implements OnInit {
 
   obtenerAutores() {
     this.autorService.obtenerAutores().subscribe(data => {
-      console.log(data);
       this.listAutores = data;
     }, error => {
       console.log(error);

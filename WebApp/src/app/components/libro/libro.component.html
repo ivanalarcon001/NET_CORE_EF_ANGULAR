@@ -3,8 +3,8 @@
         <div class="col-lg-8 offset-lg-2">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="titulo">LIBROS</h3>
-                    <p>Maximo de libros permitidos por Autor: {{ numeroMaximoPermitidos }}</p>
+                    <h3 class="titulo">MODULO LIBROS</h3>
+                    <p>Recuerda: El Maximo de libros permitidos por autor: {{ numeroMaximoPermitidos }}</p>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
                                 [class.green-icon]="this.form.get('titulo')?.valid"
                                 [class.red-icon]="this.form.get('titulo')?.invalid && this.form.get('titulo')?.touched"></i>
                             </span>
-                            <input formControlName="titulo" type="text" class="form-control" placeholder="Titulo">
+                            <input formControlName="titulo" type="text" class="form-control" placeholder="*Titulo">
                         </div>
                         <div class="input-group input-group-lg mb-3">
                             <span class="input-group-text">
@@ -29,7 +29,7 @@
                                     [class.green-icon]="this.form.get('anio')?.valid"
                                     [class.red-icon]="this.form.get('anio')?.invalid && this.form.get('anio')?.touched"></i>
                             </span>
-                            <input formControlName="anio" maxlength="16" type="text" class="form-control" placeholder="Año">
+                            <input formControlName="anio" type="number" class="form-control" placeholder="*Año">
                         </div>
                         <div class="input-group input-group-lg mb-3">
                             <span class="input-group-text">
@@ -37,38 +37,36 @@
                                     [class.green-icon]="this.form.get('genero')?.valid"
                                     [class.red-icon]="this.form.get('genero')?.invalid && this.form.get('genero')?.touched"></i>
                             </span>
-                            <input formControlName="genero" maxlength="16" type="text" class="form-control" placeholder="Genero">
+                            <input formControlName="genero" type="text" class="form-control" placeholder="*Genero">
                         </div>
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="input-group input-group-lg mb-3">
-                                    <span class="input-group-text">
-                                        <i class="fa-sharp fa-solid fa-file"
-                                            [class.green-icon]="this.form.get('numeroPaginas')?.valid"
-                                            [class.red-icon]="this.form.get('numeroPaginas')?.invalid && this.form.get('numeroPaginas')?.touched"></i>
-                                    </span>
-                                    <input formControlName="numeroPaginas" maxlength="5" type="text" class="form-control" placeholder="Numero paginas">
-                                </div>
-                            </div>
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-sharp fa-solid fa-file"
+                                    [class.green-icon]="this.form.get('numeroPaginas')?.valid"
+                                    [class.red-icon]="this.form.get('numeroPaginas')?.invalid && this.form.get('numeroPaginas')?.touched"></i>
+                            </span>
+                            <input formControlName="numeroPaginas" type="number" class="form-control" placeholder="*Numero paginas">
                         </div>
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <div class="input-group input-group-lg mb-3">
-                                    <span class="input-group-text">
-                                        <i class="fa-sharp fa-solid fa-user"
-                                            [class.green-icon]="this.form.get('autorId')?.valid"
-                                            [class.red-icon]="this.form.get('autorId')?.invalid && this.form.get('autorId')?.touched"></i>
-                                    </span>
-                                    <input formControlName="autorId" maxlength="5" type="text" class="form-control" placeholder="Autor">
-                                </div>
-                            </div>
-                        </div>                        
+                        <div class="input-group input-group-lg mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-sharp fa-solid fa-user"
+                                    [class.green-icon]="this.form.get('autorId')?.valid"
+                                    [class.red-icon]="this.form.get('autorId')?.invalid && this.form.get('autorId')?.touched"></i>
+                            </span>
+                            <input formControlName="autorId" type="number" class="form-control" placeholder="*Autor Id">
+                        </div>
+                        <!-- <select #organization (change)="selectOrganization(organization.value)" class="create-user-select-half">
+                            <option *ngFor="let o of listAutores"
+                                [value]="autor.id" 
+                                [selected]="autor == o.organization_name">
+                                {{ o.organization_name }}
+                            </option>
+                        </select> -->
                         <div class="d-grid gap-2">
                             <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
                                 <i class="fa-solid fa-floppy-disk"></i>&nbsp; Guardar</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
