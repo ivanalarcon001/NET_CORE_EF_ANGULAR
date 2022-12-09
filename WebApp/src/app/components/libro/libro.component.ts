@@ -28,7 +28,7 @@ export class LibroComponent implements OnInit {
       anio: ['', [Validators.required, Validators.max(3000), Validators.min(1900)]],
       genero: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]],
       numeroPaginas: ['', [Validators.required, Validators.max(10000), Validators.min(1)]],
-      autorId: ['', [Validators.required]],
+      autorId: [''],
     })
    }
 

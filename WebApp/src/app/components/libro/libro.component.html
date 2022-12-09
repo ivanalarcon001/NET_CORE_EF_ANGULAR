@@ -47,21 +47,23 @@
                             </span>
                             <input formControlName="numeroPaginas" type="number" class="form-control" placeholder="*Numero paginas">
                         </div>
-                        <div class="input-group input-group-lg mb-3">
+                        <!-- <div class="input-group input-group-lg mb-3">
                             <span class="input-group-text">
                                 <i class="fa-sharp fa-solid fa-user"
                                     [class.green-icon]="this.form.get('autorId')?.valid"
                                     [class.red-icon]="this.form.get('autorId')?.invalid && this.form.get('autorId')?.touched"></i>
                             </span>
                             <input formControlName="autorId" type="number" class="form-control" placeholder="*Autor Id">
+                        </div> -->
+                        <div class="input-group input-group-lg mb-3">
+                            <select formControlName="autorId" class="form-control">
+                                <option value="" selected>Seleccione</option>
+                                <option *ngFor="let autor of listAutores"
+                                    [value]="autor.autorId">
+                                    {{ autor.nombreCompleto }}
+                                </option>
+                            </select>
                         </div>
-                        <!-- <select #organization (change)="selectOrganization(organization.value)" class="create-user-select-half">
-                            <option *ngFor="let o of listAutores"
-                                [value]="autor.id" 
-                                [selected]="autor == o.organization_name">
-                                {{ o.organization_name }}
-                            </option>
-                        </select> -->
                         <div class="d-grid gap-2">
                             <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
                                 <i class="fa-solid fa-floppy-disk"></i>&nbsp; Guardar</button>
